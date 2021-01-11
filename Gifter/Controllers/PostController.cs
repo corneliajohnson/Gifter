@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Gifter.Data;
 using Gifter.Repositories;
+using Gifter.Models;
 
 namespace Gifter.Controllers
 {
@@ -29,6 +29,46 @@ namespace Gifter.Controllers
                 return NotFound();
             }
             return Ok(post);
+        }
+
+        [HttpGet("getbyuser/{id}")]
+        public IActionResult GetByUser(int id)
+        {
+            return Ok(_postRepository.GetByUserProfileId(id));
+        }
+
+        [HttpPost]
+        public IActionResult Post(Post post)
+        {
+            _postRepository.Add(post);
+            return CreatedAtAction("Get", new { id = post.Id }, post);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Post post)
+        {
+            Post p = _postRepository.GetById(id);
+            if (id != post.Id || p == null)
+            {
+                return BadRequest();
+            }
+
+            _postRepository.Update(post);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Post post = _postRepository.GetById(id);
+            
+            if(post == null)
+            {
+                return BadRequest();
+            }
+
+            _postRepository.Delete(id);
+            return NoContent();
         }
     }
 }
