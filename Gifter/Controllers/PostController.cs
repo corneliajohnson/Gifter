@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Gifter.Repositories;
 using Gifter.Models;
+using System;
 
 namespace Gifter.Controllers
 {
@@ -75,6 +76,13 @@ namespace Gifter.Controllers
         public IActionResult Search(string q, bool sortDesc)
         {
             return Ok(_postRepository.Search(q, sortDesc));
+        }
+
+        [HttpGet("dateSerach")]
+        public IActionResult DateSearch(string date)
+        {
+            DateTime d = DateTime.Parse(date);
+            return Ok(_postRepository.DatedSearch(d));
         }
     }
 }
