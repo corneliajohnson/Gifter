@@ -1,10 +1,8 @@
 ﻿using Gifter.Data;
 using Gifter.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Gifter.Repositories
 {
@@ -19,17 +17,18 @@ namespace Gifter.Repositories
 
         public List<Comment> GetByPostId(int id)
         {
-            return _context.Comment.Include(p => p.UserProfile)
-                .Include(p => p.Post)
-                .Where(p => p.Id == id).ToList();
+            return _context.Comment
+                 .Include(c => c.UserProfile)
+                .Include(c => c.Post)
+                .Where(c => c.UserProfileId == id).ToList();
         }
 
         public Comment GetById(int id)
         {
             return _context.Comment
-                .Include(p => p.UserProfile)
-                .Include(p => p.Post)
-                .FirstOrDefault(p => p.Id == id);
+                .Include(c => c.UserProfile)
+                .Include(c => c.Post)
+                .FirstOrDefault(c => c.Id == id);
         }
 
         public void Add(Comment comment)

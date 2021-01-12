@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gifter.Controllers
 {
-    //TODO Test!
+    [Route("api/[controller]")]
+    [ApiController]
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepo;

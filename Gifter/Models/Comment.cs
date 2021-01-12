@@ -1,5 +1,4 @@
-﻿
-namespace Gifter.Models
+﻿namespace Gifter.Models
 {
     public class Comment
     {
