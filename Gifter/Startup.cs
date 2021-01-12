@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace Gifter
 {
@@ -26,6 +27,11 @@ namespace Gifter
         {
             services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddControllers()
+        .AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        );
 
             services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
