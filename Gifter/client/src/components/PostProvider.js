@@ -22,8 +22,14 @@ export const PostProvider = (props) => {
       .then(getPosts);
   };
 
+  const searchPosts = (searchString, inOrder) => {
+    return fetch("/api/post/search")
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  };
+
   return (
-    <PostContext.Provider value={{ posts, getPosts, addPost }}>
+    <PostContext.Provider value={{ posts, getPosts, addPost, searchPosts }}>
       {props.children}
     </PostContext.Provider>
   );
