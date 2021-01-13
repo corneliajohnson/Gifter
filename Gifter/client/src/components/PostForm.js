@@ -14,7 +14,11 @@ const PostForm = () => {
 
   const handleClickNewPost = (event) => {
     event.preventDefault();
-    if (post.title === "" || post.imageUrl === "") {
+    if (
+      post.title === "" ||
+      post.imageUrl === "" ||
+      post.dateCreated === null
+    ) {
       window.alert("Please fill in required fields");
     } else {
       addPost({
