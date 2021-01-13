@@ -158,3 +158,6 @@ C:\Users\CJ\workspace\csharp\Gifter\Gifter\obj\Debug\net5.0\Gifter.dll
 C:\Users\CJ\workspace\csharp\Gifter\Gifter\obj\Debug\net5.0\ref\Gifter.dll
 C:\Users\CJ\workspace\csharp\Gifter\Gifter\obj\Debug\net5.0\Gifter.pdb
 C:\Users\CJ\workspace\csharp\Gifter\Gifter\obj\Debug\net5.0\Gifter.genruntimeconfig.cache
+C:\Users\CJ\workspace\csharp\Gifter\Gifter\bin\Debug\net5.0\client\package-lock.json
+C:\Users\CJ\workspace\csharp\Gifter\Gifter\bin\Debug\net5.0\client\package.json
+C:\Users\CJ\workspace\csharp\Gifter\Gifter\bin\Debug\net5.0\client\public\manifest.json
