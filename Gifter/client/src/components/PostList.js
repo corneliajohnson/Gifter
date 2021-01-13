@@ -3,11 +3,15 @@ import { PostContext } from "./PostProvider";
 import Post from "./Post";
 
 const PostList = () => {
-  const { posts, getPosts } = useContext(PostContext);
+  const { posts, getPosts, searchTerms, searchPosts } = useContext(PostContext);
 
   useEffect(() => {
-    getPosts();
-  }, []);
+    if (searchTerms !== "") {
+      searchPosts(searchTerms, true);
+    } else {
+      getPosts();
+    }
+  }, [searchTerms]);
 
   return (
     <div className="container">
