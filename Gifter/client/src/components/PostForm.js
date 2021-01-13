@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
+import { PostContext } from "./PostProvider";
 
 const PostForm = () => {
+  const { addPost } = useContext(PostContext);
   const [post, setPost] = useState({});
 
   const handleControlledInputChange = (event) => {
@@ -15,11 +17,11 @@ const PostForm = () => {
     if (post.title === "" || post.imageUrl === "") {
       window.alert("Please fill in required fields");
     } else {
-      console.log({
+      addPost({
         title: post.title,
         imageUrl: post.imageUrl,
-        caption: post.caption,
-        dateCreated: Date.now(),
+        dateCreated: post.dateCreated,
+        caption: post.caption ? post.caption : null,
         userProfileId: 1,
       });
     }
@@ -58,6 +60,19 @@ const PostForm = () => {
                 name="imageUrl"
                 id="imageUrl"
                 placeholder="Url"
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label className="text-left" for="caption" sm={4}>
+              Date Created
+            </Label>
+            <Col sm={8}>
+              <Input
+                onChange={handleControlledInputChange}
+                type="date"
+                name="dateCreated"
+                id="dateCreated"
               />
             </Col>
           </FormGroup>
