@@ -18,7 +18,12 @@ const PostList = () => {
       <div className="row justify-content-center">
         <div className="cards-column">
           {posts.map((post) => (
-            <Post key={post.id} post={post} />
+            <Post
+              key={post.id}
+              post={post}
+              comments={post.comments}
+              comments={post.comments}
+            />
           ))}
         </div>
       </div>

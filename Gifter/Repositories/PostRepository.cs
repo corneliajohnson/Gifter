@@ -10,7 +10,6 @@ namespace Gifter.Repositories
     public class PostRepository : IPostRepository
     {
         private readonly ApplicationDbContext _context;
-
         public PostRepository(ApplicationDbContext context)
         {
             _context = context;
@@ -18,7 +17,7 @@ namespace Gifter.Repositories
 
         public List<Post> GetAll()
         {
-            return _context.Post.Include(p => p.UserProfile).ToList();
+            return _context.Post.Include(p => p.UserProfile).Include(p => p.Comments).ToList();
         }
 
         public Post GetById(int id)
