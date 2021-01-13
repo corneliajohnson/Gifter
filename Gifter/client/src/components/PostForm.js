@@ -1,7 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
 
 const PostForm = () => {
+  const [post, setPost] = useState({});
+
+  const handleControlledInputChange = (event) => {
+    const newPost = { ...post };
+    newPost[event.target.name] = event.target.value;
+    setPost(newPost);
+  };
+
+  const handleClickNewPost = (event) => {
+    event.preventDefault();
+    if (post.title === "" || post.imageUrl === "") {
+      window.alert("Please fill in required fields");
+    } else {
+      console.log({
+        title: post.title,
+        imageUrl: post.imageUrl,
+        caption: post.caption,
+        dateCreated: Date.now(),
+        userProfileId: 1,
+      });
+    }
+  };
+
   return (
     <>
       <h3 className="mt-5">Add a Post</h3>
@@ -12,7 +35,15 @@ const PostForm = () => {
               Title
             </Label>
             <Col sm={10}>
-              <Input type="text" name="title" id="post-title" />
+              <Input
+                onChange={handleControlledInputChange}
+                name="title"
+                type="text"
+                id="postTitle"
+                required
+                autoFocus
+                className="form-control"
+              />
             </Col>
           </FormGroup>
           <FormGroup row>
@@ -21,6 +52,8 @@ const PostForm = () => {
             </Label>
             <Col sm={8}>
               <Input
+                onChange={handleControlledInputChange}
+                name="imageUrl"
                 type="text"
                 name="imageUrl"
                 id="imageUrl"
@@ -34,6 +67,7 @@ const PostForm = () => {
             </Label>
             <Col sm={8}>
               <Input
+                onChange={handleControlledInputChange}
                 type="caption"
                 name="caption"
                 id="caption"
@@ -41,17 +75,7 @@ const PostForm = () => {
               />
             </Col>
           </FormGroup>
-          <FormGroup row>
-            <Label for="exampleSelect" className="text-left" sm={4}>
-              User
-            </Label>
-            <Col sm={8}>
-              <Input type="select" name="userProfileId" id="userProfileId">
-                <option>1</option>
-              </Input>
-            </Col>
-          </FormGroup>
-          <Button>Submit</Button>
+          <Button onClick={handleClickNewPost}>Submit</Button>
         </Form>
       </div>
     </>
