@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { PostContext } from "./PostProvider";
 import Post from "./Post";
 
 const PostList = () => {
-  const [posts, setPosts] = useState([]);
+  const { posts, getPosts } = useContext(PostContext);
 
   useEffect(() => {
-    fetch("/api/post")
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
+    getPosts();
   }, []);
 
   return (
