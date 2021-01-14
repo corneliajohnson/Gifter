@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input, Col } from "reactstrap";
 import { PostContext } from "./PostProvider";
+import { useHistory } from "react-router-dom";
 
 const PostForm = () => {
   const { addPost } = useContext(PostContext);
   const [post, setPost] = useState({});
+
+  const history = useHistory();
 
   const handleControlledInputChange = (event) => {
     const newPost = { ...post };
@@ -25,9 +28,8 @@ const PostForm = () => {
         title: post.title,
         imageUrl: post.imageUrl,
         dateCreated: post.dateCreated,
-        caption: post.caption ? post.caption : null,
         userProfileId: 1,
-      });
+      }).then(() => history.push("/"));
     }
   };
 
@@ -77,20 +79,6 @@ const PostForm = () => {
                 type="date"
                 name="dateCreated"
                 id="dateCreated"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label className="text-left" for="caption" sm={4}>
-              Caption
-            </Label>
-            <Col sm={8}>
-              <Input
-                onChange={handleControlledInputChange}
-                type="caption"
-                name="caption"
-                id="caption"
-                placeholder="Caption"
               />
             </Col>
           </FormGroup>
