@@ -7,7 +7,7 @@ export const PostSearch = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container mt-5">
         <div className="row justify-content-center">
           <Input
             type="text"
