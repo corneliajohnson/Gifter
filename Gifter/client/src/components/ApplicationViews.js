@@ -5,6 +5,7 @@ import PostForm from "./PostForm";
 import { PostSearch } from "./PostSearch";
 import { PostProvider } from "./PostProvider";
 import PostDetails from "./PostDetails";
+import { UserPosts } from "./UserPosts";
 
 const ApplicationViews = () => {
   return (
@@ -25,6 +26,12 @@ const ApplicationViews = () => {
       <Route path="/posts/:id">
         <PostProvider>
           <PostDetails />
+        </PostProvider>
+      </Route>
+
+      <Route path="/user">
+        <PostProvider>
+          <UserPosts />
         </PostProvider>
       </Route>
     </Switch>

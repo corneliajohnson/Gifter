@@ -18,6 +18,11 @@ const Header = () => {
             New Post
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/user" className="nav-link">
+            User
+          </Link>
+        </li>
       </ul>
     </nav>
   );
