@@ -13,7 +13,7 @@ export const PostSearch = () => {
             type="text"
             className="w-50"
             onKeyUp={(event) => setSearchTerms(event.target.value)}
-            placeholder="Search for an post... "
+            placeholder="Search for a post... "
           />
         </div>
       </div>
