@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetch(`/api/userprofile/${1}`)
+      .then((res) => res.json())
+      .then((user) => setUser(user));
+  }, []);
+
   return (
     <nav className="navbar navbar-expand navbar-dark bg-info">
       <Link to="/" className="navbar-brand">
@@ -20,7 +28,7 @@ const Header = () => {
         </li>
         <li className="nav-item">
           <Link to={`/user/1`} className="nav-link">
-            User
+            {user.name}
           </Link>
         </li>
       </ul>
