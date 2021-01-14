@@ -29,7 +29,7 @@ const ApplicationViews = () => {
         </PostProvider>
       </Route>
 
-      <Route path="/user">
+      <Route path="/user/:id">
         <PostProvider>
           <UserPosts />
         </PostProvider>

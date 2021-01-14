@@ -6,9 +6,10 @@ import Post from "./Post";
 export const UserPosts = () => {
   const { getPostByUserId } = useContext(PostContext);
   const [userPost, setUserPost] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    getPostByUserId(1).then((post) => setUserPost(post));
+    getPostByUserId(id).then((post) => setUserPost(post));
   }, []);
 
   if (!userPost) {
