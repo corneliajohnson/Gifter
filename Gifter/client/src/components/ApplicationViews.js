@@ -4,6 +4,7 @@ import PostList from "./PostList";
 import PostForm from "./PostForm";
 import { PostSearch } from "./PostSearch";
 import { PostProvider } from "./PostProvider";
+import PostDetails from "./PostDetails";
 
 const ApplicationViews = () => {
   return (
@@ -21,7 +22,11 @@ const ApplicationViews = () => {
         </PostProvider>
       </Route>
 
-      <Route path="/posts/:id">{/* TODO: Post Details Component */}</Route>
+      <Route path="/posts/:id">
+        <PostProvider>
+          <PostDetails />
+        </PostProvider>
+      </Route>
     </Switch>
   );
 };

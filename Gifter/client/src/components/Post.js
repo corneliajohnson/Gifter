@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardImg, CardBody } from "reactstrap";
+import { Link, ListGroupItem } from "react-router-dom";
 
 const Post = ({ post, comments }) => {
   return (
@@ -7,22 +8,16 @@ const Post = ({ post, comments }) => {
       <p className="text-left px-2">Posted by: {post.userProfile.name}</p>
       <CardImg top src={post.imageUrl} alt={post.title} />
       <CardBody>
-        <p>
+        <Link to={`/posts/${post.id}`}>
           <strong>{post.title}</strong>
-        </p>
+        </Link>
         <hr />
         <p className="text-left">
           <strong>Comments </strong>
         </p>
-        {comments.length === 0 ? (
-          <p className="text-left">None</p>
-        ) : (
-          comments.map((c) => (
-            <p className="text-left" key={c.id}>
-              {c.userProfile.name}: {c.message}
-            </p>
-          ))
-        )}
+        {post.comments.map((c) => (
+          <p className="text-left">{c.message}</p>
+        ))}
       </CardBody>
     </Card>
   );
