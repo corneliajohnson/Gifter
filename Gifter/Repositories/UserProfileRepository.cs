@@ -25,11 +25,6 @@ namespace Gifter.Repositories
             return _context.UserProfile.FirstOrDefault(up => up.Id == id);
         }
 
-        public void Add(UserProfile userProfile)
-        {
-            _context.Add(userProfile);
-            _context.SaveChanges();
-        }
 
         public void Update(UserProfile userProfile)
         {
@@ -45,5 +40,19 @@ namespace Gifter.Repositories
             _context.UserProfile.Remove(userProfile);
             _context.SaveChanges();
         }
+
+        //used for firebase authentication
+        public UserProfile GetByFirebaseUserId(string firebaseId)
+        {
+            return _context.UserProfile
+                    .FirstOrDefault(up => up.FirebaseId == firebaseId);
+        }
+
+        public void Add(UserProfile userProfile)
+        {
+            _context.Add(userProfile);
+            _context.SaveChanges();
+        }
+
     }
 }

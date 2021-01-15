@@ -27,23 +27,6 @@ namespace Gifter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddControllers()
-        .AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        );
-
-            services.AddTransient<ICommentRepository, CommentRepository>();
-            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
-            services.AddTransient<IPostRepository, PostRepository>();
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gifter", Version = "v1" });
-            });
-
             //firebase
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
@@ -61,6 +44,23 @@ namespace Gifter
                         ValidateLifetime = true
                     };
                 });
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddControllers()
+        .AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        );
+
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gifter", Version = "v1" });
+            });
         }
 
 
