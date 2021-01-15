@@ -6,16 +6,23 @@ import { PostSearch } from "./PostSearch";
 import { PostProvider } from "./PostProvider";
 import PostDetails from "./PostDetails";
 import { UserPosts } from "./UserPosts";
+import Login from "./Login";
+import Register from "./Register";
+import { UserProfileProvider } from "../providers/UserProfileProvider";
 
 const ApplicationViews = () => {
   return (
     <Switch>
       <Route path="/login">
-        <Login />
+        <UserProfileProvider>
+          <Login />
+        </UserProfileProvider>
       </Route>
 
       <Route path="/register">
-        <Register />
+        <UserProfileProvider>
+          <Register />
+        </UserProfileProvider>
       </Route>
 
       <Route path="/" exact>
