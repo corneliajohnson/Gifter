@@ -8,7 +8,7 @@ const PostForm = () => {
   const [post, setPost] = useState({});
 
   const history = useHistory();
-
+  const user = JSON.parse(localStorage.getItem("userProfile"));
   const handleControlledInputChange = (event) => {
     const newPost = { ...post };
     newPost[event.target.name] = event.target.value;
@@ -28,7 +28,7 @@ const PostForm = () => {
         title: post.title,
         imageUrl: post.imageUrl,
         dateCreated: post.dateCreated,
-        userProfileId: 1,
+        userProfileId: user.id,
       }).then(() => history.push("/"));
     }
   };
