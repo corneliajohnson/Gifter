@@ -10,6 +10,14 @@ import { UserPosts } from "./UserPosts";
 const ApplicationViews = () => {
   return (
     <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
+
+      <Route path="/register">
+        <Register />
+      </Route>
+
       <Route path="/" exact>
         <PostProvider>
           <PostSearch />
